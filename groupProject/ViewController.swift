@@ -7,45 +7,32 @@
 //
 
 import UIKit
-import AVKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
-    // MARK: Variables
+    // MARK: - Variables
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
 
+    // MARK: - Outlets
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var captureImageView: UIImageView!
+
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    // MARK: Outlets
-    @IBOutlet weak var PreviewView: UIView!
-    @IBOutlet weak var CaptureImageView: UIImageView!
-
-
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        
-        guard let imageData = photo.fileDataRepresentation() else {
-            return
-        }
-        
-        let image = UIImage(data: imageData)
-        CaptureImageView.image = image
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.captureSession.stopRunning()
+        
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
         
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video) else {
-            print("unable to access camera")
+            print("Error: Unable to access camera.")
             return
         }
         
@@ -61,14 +48,24 @@ class ViewController: UIViewController {
             
         }
         catch let error {
-            print("error")
+            print("Error: Unable to initialize back camera: \(error.localizedDescription)")
         }
     }
     
-    @IBAction func didTakePhoto(_ sender: Any) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.captureSession.stopRunning()
+    }
+    
+    // MARK: - Functions
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
-        let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-        stillImageOutput.capturePhoto(with: settings, delegate: self as! AVCapturePhotoCaptureDelegate)
+        guard let imageData = photo.fileDataRepresentation() else {
+            return
+        }
+        
+        let image = UIImage(data: imageData)
+        captureImageView.image = image
         
     }
     
@@ -78,16 +75,27 @@ class ViewController: UIViewController {
         
         videoPreviewLayer.videoGravity = .resizeAspect
         videoPreviewLayer.connection?.videoOrientation = .portrait
-        PreviewView.layer.addSublayer(videoPreviewLayer)
+        previewView.layer.addSublayer(videoPreviewLayer)
         
         DispatchQueue.global(qos: .userInitiated).async {
-            self.captureSession.startRunning();
+            
+//            [weak self] in
+            
+            self.captureSession.startRunning()
           
             DispatchQueue.main.async {
-                self.videoPreviewLayer.frame = self.PreviewView.bounds
+                self.videoPreviewLayer.frame = self.previewView.bounds
             }
             
         }
+        
+    }
+    
+    // MARK: - Actions
+    @IBAction func didTakePhoto(_ sender: Any) {
+        
+        let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+        stillImageOutput.capturePhoto(with: settings, delegate: self)
         
     }
     
