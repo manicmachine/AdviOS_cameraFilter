@@ -9,7 +9,7 @@ git add "fileName"
 git commit -m "Insert comment here"
     This formally 'saves' the file to a local repository.
 
-git push
+git push origin master
     Pushes the locally committed changes to the online GitHub repository
 
 git pull
