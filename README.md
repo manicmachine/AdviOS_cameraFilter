@@ -1,4 +1,3 @@
-
 # iOS_bootleg_snapchat
 
 git add .
@@ -15,4 +14,3 @@ git push
 
 git pull
     Pulls any changes from the online repository down to your local computer
-
