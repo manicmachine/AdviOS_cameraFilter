@@ -14,3 +14,6 @@ git push
 
 git pull
     Pulls any changes from the online repository down to your local computer
+
+git status
+    Tells you any differences between your last LOCAL commit and your current workspace
