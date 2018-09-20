@@ -1,1 +1,1 @@
-# iOS_bootleg_snapshat
+# iOS_bootleg_snapchat
