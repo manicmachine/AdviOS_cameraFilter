@@ -1,4 +1,5 @@
-# iOS_bootleg_snapshat
+
+# iOS_bootleg_snapchat
 
 git add .
     This will add all local changes to a 'stage' that is ready to be committed locally
@@ -14,3 +15,4 @@ git push
 
 git pull
     Pulls any changes from the online repository down to your local computer
+
