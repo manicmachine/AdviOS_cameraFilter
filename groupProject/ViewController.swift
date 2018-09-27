@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
@@ -20,9 +21,35 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureImageView: UIImageView!
 
+    // Save Image to Core Data Function
+    func saveImageToCoreData( image: UIImage) {
+        
+        let imagePNG = UIImagePNGRepresentation(image);
+        
+        // This line was also in the tutorial right after the line above, not sure what it's used for ----->     myCoreDataEntity.imageData = imageData
+        /* https://forums.developer.apple.com/thread/40411 */
+        
+        //Set up context for Core Data Storage
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        // 'StoredPhotos' is the name of our CoreData entity
+        // This should set the value of 'image' in StoredPhotos
+        let entity = NSEntityDescription.entity(forEntityName: "StoredPhotos", in: context)
+        let newStoredPhoto = NSManagedObject(entity: entity!, insertInto: context)
+        newStoredPhoto.setValue(imagePNG, forKey: "image")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving")
+        }
+    }
+    
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,6 +93,9 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         let image = UIImage(data: imageData)
         captureImageView.image = image
+        
+        // Our save to core data function
+        saveImageToCoreData(image : image!)
         
     }
     
