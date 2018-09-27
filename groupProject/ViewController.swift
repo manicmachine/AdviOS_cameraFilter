@@ -79,8 +79,6 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         DispatchQueue.global(qos: .userInitiated).async {
             
-//            [weak self] in
-            
             self.captureSession.startRunning()
           
             DispatchQueue.main.async {
