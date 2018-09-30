@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  groupProject
 //
-//  Created by Friedl, Luke on 9/20/18.
-//  Copyright © 2018 Friedl, Luke. All rights reserved.
+//  Created by Group 1 on 9/20/18.
+//  Copyright © 2018 Group 1. All rights reserved.
 //
 
 import UIKit
@@ -28,16 +28,19 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Initialize and configure an AVCaptureSession to manage the photostream
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
-        
-        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video) else {
+
+        // Configure the input device (front camera). If unable to do so, bail.
+        guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) else {
             print("Error: Unable to access camera.")
             return
         }
         
+        // Initialize and configure the capture input; passing along the input and output objects.
         do {
-            let input = try AVCaptureDeviceInput(device: backCamera)
+            let input = try AVCaptureDeviceInput(device: frontCamera)
             stillImageOutput = AVCapturePhotoOutput()
             
             if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
@@ -52,23 +55,26 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
     }
     
+    // Capture session cleanup.
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.captureSession.stopRunning()
     }
     
     // MARK: - Functions
+    // Delegate function to handle finished photo from stream
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        
+
         guard let imageData = photo.fileDataRepresentation() else {
             return
         }
-        
+
         let image = UIImage(data: imageData)
         captureImageView.image = image
         
     }
     
+    // Initialize and configure video preview 
     func setupLivePreview() {
         
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
