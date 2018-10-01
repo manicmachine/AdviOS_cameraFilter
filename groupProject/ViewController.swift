@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
-    var currentFilter: String
+    var currentFilter: String = ""
     
     let filters = [
         "Sepia" : "CISepiaTone",
@@ -43,6 +43,9 @@ class ViewController: UIViewController {
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        captureImageView.layer.borderWidth = 1
+        captureImageView.layer.borderColor =  UIColor.black.cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
