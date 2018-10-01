@@ -9,12 +9,32 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+class ViewController: UIViewController {
     
     // MARK: - Variables
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    var currentFilter: String
+    
+    let filters = [
+        "Sepia" : "CISepiaTone",
+        "Greyscale" : "CIPhotoEffectMono",
+        "Posterize" : "CIColorPosterize",
+        "Disc Blur" : "CIDiscBlur",
+        "Zoom Blur" : "CIZoomBlur",
+        "Invert Color" : "CIColorInvert",
+        "Instant Photo" : "CIPhotoEffectInstant",
+        "Bump Distort" : "CIBumpDistortion",
+        "Hole Distort" : "CIHoleDistortion",
+        "Pinch Distort" : "CIPinchDistortion",
+        "Bloom" : "CIBloom",
+        "Comic" : "CIComicEffect",
+        "Crystalize" : "CICrystallize",
+        "Edges" : "CIEdges",
+        "Pixellate" : "CIPixellate",
+        "Line Overlay" : "CILineOverlay",
+        "Kaleidoscope" : "CIKaleidoscope"]
 
     // MARK: - Outlets
     @IBOutlet weak var previewView: UIView!
@@ -61,19 +81,6 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.captureSession.stopRunning()
     }
     
-    // MARK: - Functions
-    // Delegate function to handle finished photo from stream
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-
-        guard let imageData = photo.fileDataRepresentation() else {
-            return
-        }
-
-        let image = UIImage(data: imageData)
-        captureImageView.image = image
-        
-    }
-    
     // Initialize and configure video preview 
     func setupLivePreview() {
         
@@ -105,3 +112,18 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
 }
 
+extension ViewController : AVCapturePhotoCaptureDelegate {
+    
+    // Handle finished photo from stream
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let imageData = photo.fileDataRepresentation() else {
+            return
+        }
+        
+        var image = CIImage(data: imageData)
+        image = image?.applyingFilter("CIKaleidoscope")
+        captureImageView.image = UIImage(ciImage: image!)
+        
+    }
+    
+}
