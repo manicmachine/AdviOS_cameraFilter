@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6FBDCC2D21541D4B00C2318E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDCC2C21541D4B00C2318E /* AppDelegate.swift */; };
-		6FBDCC2F21541D4B00C2318E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDCC2E21541D4B00C2318E /* ViewController.swift */; };
+		6FBDCC2F21541D4B00C2318E /* ViewFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDCC2E21541D4B00C2318E /* ViewFinderViewController.swift */; };
 		6FBDCC3221541D4B00C2318E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBDCC3021541D4B00C2318E /* Main.storyboard */; };
 		6FBDCC3521541D4B00C2318E /* groupProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDCC3321541D4B00C2318E /* groupProject.xcdatamodeld */; };
 		6FBDCC3721541D4C00C2318E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FBDCC3621541D4C00C2318E /* Assets.xcassets */; };
@@ -16,12 +16,17 @@
 		E73B001C215D609400B427CF /* ViewFinderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B001B215D609400B427CF /* ViewFinderViewControllerDelegate.swift */; };
 		E73B001E215D626500B427CF /* Stickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B001D215D626500B427CF /* Stickers.swift */; };
 		E73B0020215D64D700B427CF /* StickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B001F215D64D700B427CF /* StickerCell.swift */; };
+		F5393B862161B88A0003A5DC /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B852161B88A0003A5DC /* Filters.swift */; };
+		F5393B882161BB7F0003A5DC /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B872161BB7F0003A5DC /* ContainerViewController.swift */; };
+		F5393B8A2161BBD80003A5DC /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B892161BBD80003A5DC /* FilterCell.swift */; };
+		F5393B8C2161BC9C0003A5DC /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */; };
+		F5393B8E2161BE570003A5DC /* SidePanelViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6FBDCC2921541D4B00C2318E /* groupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = groupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBDCC2C21541D4B00C2318E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6FBDCC2E21541D4B00C2318E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6FBDCC2E21541D4B00C2318E /* ViewFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinderViewController.swift; sourceTree = "<group>"; };
 		6FBDCC3121541D4B00C2318E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FBDCC3421541D4B00C2318E /* groupProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = groupProject.xcdatamodel; sourceTree = "<group>"; };
 		6FBDCC3621541D4C00C2318E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,6 +35,11 @@
 		E73B001B215D609400B427CF /* ViewFinderViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinderViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E73B001D215D626500B427CF /* Stickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stickers.swift; sourceTree = "<group>"; };
 		E73B001F215D64D700B427CF /* StickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCell.swift; sourceTree = "<group>"; };
+		F5393B852161B88A0003A5DC /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		F5393B872161BB7F0003A5DC /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		F5393B892161BBD80003A5DC /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
+		F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +72,9 @@
 		6FBDCC2B21541D4B00C2318E /* groupProject */ = {
 			isa = PBXGroup;
 			children = (
+				F5393B852161B88A0003A5DC /* Filters.swift */,
 				6FBDCC2C21541D4B00C2318E /* AppDelegate.swift */,
-				6FBDCC2E21541D4B00C2318E /* ViewController.swift */,
+				6FBDCC2E21541D4B00C2318E /* ViewFinderViewController.swift */,
 				E73B001D215D626500B427CF /* Stickers.swift */,
 				E73B001F215D64D700B427CF /* StickerCell.swift */,
 				E73B001B215D609400B427CF /* ViewFinderViewControllerDelegate.swift */,
@@ -72,6 +83,10 @@
 				6FBDCC3821541D4C00C2318E /* LaunchScreen.storyboard */,
 				6FBDCC3B21541D4C00C2318E /* Info.plist */,
 				6FBDCC3321541D4B00C2318E /* groupProject.xcdatamodeld */,
+				F5393B872161BB7F0003A5DC /* ContainerViewController.swift */,
+				F5393B892161BBD80003A5DC /* FilterCell.swift */,
+				F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */,
+				F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */,
 			);
 			path = groupProject;
 			sourceTree = "<group>";
@@ -147,11 +162,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5393B8E2161BE570003A5DC /* SidePanelViewControllerDelegate.swift in Sources */,
+				F5393B862161B88A0003A5DC /* Filters.swift in Sources */,
 				E73B001E215D626500B427CF /* Stickers.swift in Sources */,
+				F5393B8C2161BC9C0003A5DC /* SidePanelViewController.swift in Sources */,
+				F5393B882161BB7F0003A5DC /* ContainerViewController.swift in Sources */,
 				E73B0020215D64D700B427CF /* StickerCell.swift in Sources */,
-				6FBDCC2F21541D4B00C2318E /* ViewController.swift in Sources */,
+				6FBDCC2F21541D4B00C2318E /* ViewFinderViewController.swift in Sources */,
 				6FBDCC2D21541D4B00C2318E /* AppDelegate.swift in Sources */,
 				E73B001C215D609400B427CF /* ViewFinderViewControllerDelegate.swift in Sources */,
+				F5393B8A2161BBD80003A5DC /* FilterCell.swift in Sources */,
 				6FBDCC3521541D4B00C2318E /* groupProject.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

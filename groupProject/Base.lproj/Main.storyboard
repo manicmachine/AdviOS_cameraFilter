@@ -10,15 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Side Panel View Controller-->
         <scene sceneID="WIv-bc-A9D">
             <objects>
-                <viewController id="QIb-Cb-iyv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FiltersViewController" id="QIb-Cb-iyv" customClass="SidePanelViewController" customModule="groupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mQ6-ht-qK7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NdR-4Q-sBm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NdR-4Q-sBm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="iZO-B2-6mw"/>
@@ -28,23 +28,28 @@
                                 <rect key="frame" x="0.0" y="180" width="375" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stickerCell" id="Y8T-D5-iFC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterCell" id="Y8T-D5-iFC" customClass="FilterCell" customModule="groupProject" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y8T-D5-iFC" id="2Ys-d3-VUb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxk-EW-9yP" userLabel="Sticker Image">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxk-EW-9yP" userLabel="filterSampleImage">
                                                     <rect key="frame" x="16" y="8.5" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Vos-b1-jXx"/>
                                                         <constraint firstAttribute="width" constant="85" id="d6r-uF-eBx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR0-Rr-Ejf" userLabel="Sticker Name">
-                                                    <rect key="frame" x="123" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR0-Rr-Ejf" userLabel="filterTitle">
+                                                    <rect key="frame" x="117" y="13" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA3-U0-hYj" userLabel="filterName">
+                                                    <rect key="frame" x="317" y="13" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -52,11 +57,24 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cxk-EW-9yP" firstAttribute="top" secondItem="2Ys-d3-VUb" secondAttribute="top" constant="8" id="W3p-67-hYm"/>
+                                                <constraint firstItem="tR0-Rr-Ejf" firstAttribute="leading" secondItem="cxk-EW-9yP" secondAttribute="trailing" constant="16" id="Yvf-al-52q"/>
+                                                <constraint firstAttribute="trailing" secondItem="xA3-U0-hYj" secondAttribute="trailing" constant="16" id="cHZ-Lt-vns"/>
+                                                <constraint firstItem="tR0-Rr-Ejf" firstAttribute="centerY" secondItem="cxk-EW-9yP" secondAttribute="centerY" id="mBI-fg-Ae1"/>
                                                 <constraint firstItem="cxk-EW-9yP" firstAttribute="leading" secondItem="2Ys-d3-VUb" secondAttribute="leading" constant="16" id="udm-Cn-X7h"/>
+                                                <constraint firstItem="xA3-U0-hYj" firstAttribute="centerY" secondItem="tR0-Rr-Ejf" secondAttribute="centerY" id="zR8-n2-QcU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="filterName" destination="xA3-U0-hYj" id="1dV-hc-5MI"/>
+                                            <outlet property="filterSampleImage" destination="cxk-EW-9yP" id="kYe-4B-UeU"/>
+                                            <outlet property="filterTitle" destination="tR0-Rr-Ejf" id="oBV-e1-jRp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QIb-Cb-iyv" id="kTJ-U6-b5O"/>
+                                    <outlet property="delegate" destination="QIb-Cb-iyv" id="PV3-3B-aVj"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -74,15 +92,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Aee-xT-3YE"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Fdz-7G-irT" id="z7E-Le-Qw5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Wm-qV-j0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-780" y="31.934032983508249"/>
         </scene>
-        <!--View Controller-->
+        <!--View Finder View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="groupProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewFinderViewController" id="BYZ-38-t0r" customClass="ViewFinderViewController" customModule="groupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

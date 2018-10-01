@@ -9,32 +9,15 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewFinderViewController: UIViewController {
     
     // MARK: - Variables
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
-    var currentFilter: String = ""
+    var delegate: ViewFinderViewControllerDelegate?
     
-    let filters = [
-        "Sepia" : "CISepiaTone",
-        "Greyscale" : "CIPhotoEffectMono",
-        "Posterize" : "CIColorPosterize",
-        "Disc Blur" : "CIDiscBlur",
-        "Zoom Blur" : "CIZoomBlur",
-        "Invert Color" : "CIColorInvert",
-        "Instant Photo" : "CIPhotoEffectInstant",
-        "Bump Distort" : "CIBumpDistortion",
-        "Hole Distort" : "CIHoleDistortion",
-        "Pinch Distort" : "CIPinchDistortion",
-        "Bloom" : "CIBloom",
-        "Comic" : "CIComicEffect",
-        "Crystalize" : "CICrystallize",
-        "Edges" : "CIEdges",
-        "Pixellate" : "CIPixellate",
-        "Line Overlay" : "CILineOverlay",
-        "Kaleidoscope" : "CIKaleidoscope"]
+    var currentFilter: String = "None"
 
     // MARK: - Outlets
     @IBOutlet weak var previewView: UIView!
@@ -84,6 +67,7 @@ class ViewController: UIViewController {
         self.captureSession.stopRunning()
     }
     
+    // MARK: - Functions
     // Initialize and configure video preview 
     func setupLivePreview() {
         
@@ -115,7 +99,8 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController : AVCapturePhotoCaptureDelegate {
+// MARK: - Extensions
+extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
     
     // Handle finished photo from stream
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -124,9 +109,23 @@ extension ViewController : AVCapturePhotoCaptureDelegate {
         }
         
         var image = CIImage(data: imageData)
-        image = image?.applyingFilter("CIKaleidoscope")
+        if currentFilter != "None" {
+            image = image?.applyingFilter(currentFilter)
+        }
+        
         captureImageView.image = UIImage(ciImage: image!)
         
+    }
+    
+}
+
+extension ViewFinderViewController: SidePanelViewControllerDelegate {
+    
+    // Switch currently used filter to whichever was selected
+    func didSelectFilter(_ filter: Filter) {
+        
+        currentFilter = filter.filterName
+        delegate?.toggleFiltersPanel?()
     }
     
 }

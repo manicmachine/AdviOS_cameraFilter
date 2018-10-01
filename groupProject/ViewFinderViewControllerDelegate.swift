@@ -10,7 +10,6 @@ import Foundation
 
 @objc
 protocol ViewFinderViewControllerDelegate {
-    @objc optional func toggleLeftPanel()
-    @objc optional func collapseSidePanels()
+    @objc optional func toggleFiltersPanel()
 }
 
