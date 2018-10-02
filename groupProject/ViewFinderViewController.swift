@@ -116,16 +116,22 @@ extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
             image = image?.applyingFilter(currentFilter)
         }
         
-        captureImageView.image = UIImage(ciImage: image!)
+        let uiimage = UIImage(ciImage: image!)
+        captureImageView.image = uiimage
         
         // Save image to device's Photo Library
         PHPhotoLibrary.requestAuthorization { status in
             guard status == .authorized else { return }
         
         PHPhotoLibrary.shared().performChanges({
-            let creationRequest = PHAssetCreationRequest.forAsset()
-            creationRequest.addResource(with: .photo, data: photo.fileDataRepresentation()!, options: nil)})
+            UIImageWriteToSavedPhotosAlbum(uiimage, self, #selector(self.logImage), nil)})
+//            let creationRequest = PHAssetCreationRequest.forAsset()
+//            creationRequest.addResource(with: .photo, data: image., options: nil)})
         }
+    }
+    
+    @objc func logImage() {
+        print("Imaged saved...")
     }
 }
 
