@@ -93,6 +93,7 @@
                         <viewLayoutGuide key="safeArea" id="Aee-xT-3YE"/>
                     </view>
                     <connections>
+                        <outlet property="bannerImage" destination="NdR-4Q-sBm" id="Rcd-8D-7kS"/>
                         <outlet property="tableView" destination="Fdz-7G-irT" id="z7E-Le-Qw5"/>
                     </connections>
                 </viewController>
