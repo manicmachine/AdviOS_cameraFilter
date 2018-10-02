@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import Photos
+
 
 class ViewFinderViewController: UIViewController {
     
@@ -108,6 +110,7 @@ extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
             return
         }
         
+        // Apply filter and output the new image
         var image = CIImage(data: imageData)
         if currentFilter != "None" {
             image = image?.applyingFilter(currentFilter)
@@ -115,8 +118,15 @@ extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
         
         captureImageView.image = UIImage(ciImage: image!)
         
+        // Save image to device's Photo Library
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized else { return }
+        
+        PHPhotoLibrary.shared().performChanges({
+            let creationRequest = PHAssetCreationRequest.forAsset()
+            creationRequest.addResource(with: .photo, data: photo.fileDataRepresentation()!, options: nil)})
+        }
     }
-    
 }
 
 extension ViewFinderViewController: SidePanelViewControllerDelegate {
@@ -124,7 +134,7 @@ extension ViewFinderViewController: SidePanelViewControllerDelegate {
     // Switch currently used filter to whichever was selected
     func didSelectFilter(_ filter: Filter) {
         
-        currentFilter = filter.filterName
+        currentFilter = filter.filterName        
         delegate?.toggleFiltersPanel?()
     }
     

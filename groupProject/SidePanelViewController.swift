@@ -12,6 +12,7 @@ class SidePanelViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerImage: UIImageView!
     
     // MARK: - Variables
     var delegate: SidePanelViewControllerDelegate?
@@ -47,6 +48,8 @@ extension SidePanelViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let filter = filters[indexPath.row]
+        bannerImage.image? = filter.image!
+        
         delegate?.didSelectFilter(filter)
     }
     

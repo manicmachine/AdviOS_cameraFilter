@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import Photos
 
 class ContainerViewController: UIViewController {
 
@@ -44,6 +45,8 @@ class ContainerViewController: UIViewController {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         viewFinderNavigationController.view.addGestureRecognizer(panGestureRecognizer)
         
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized else { return }}
     }
 
 }
