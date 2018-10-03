@@ -104,6 +104,8 @@ class ViewFinderViewController: UIViewController {
 // MARK: - Extensions
 extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
     
+    static let imageContext = CIContext(options: nil)
+    
     // Handle finished photo from stream
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else {
@@ -116,22 +118,17 @@ extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
             image = image?.applyingFilter(currentFilter)
         }
         
-        let uiimage = UIImage(ciImage: image!)
-        captureImageView.image = uiimage
+        // Convert CIImage back to Data by converting CIImage > CGImage > UIImage
+        // to fix photo orientation as photos are taken in landscape by default
+        // and CIImage strips orientation data. Converting directly from CIImage
+        // to UIImage fails to adjust orientation by itself.
+        let tempImage: CGImage = ViewFinderViewController.imageContext.createCGImage(image!, from: image!.extent)!
+        let uiImage = UIImage(cgImage: tempImage, scale: 1.0, orientation: .right)
         
-        // Save image to device's Photo Library
-        PHPhotoLibrary.requestAuthorization { status in
-            guard status == .authorized else { return }
+        captureImageView.image = uiImage
         
-        PHPhotoLibrary.shared().performChanges({
-            UIImageWriteToSavedPhotosAlbum(uiimage, self, #selector(self.logImage), nil)})
-//            let creationRequest = PHAssetCreationRequest.forAsset()
-//            creationRequest.addResource(with: .photo, data: image., options: nil)})
-        }
-    }
-    
-    @objc func logImage() {
-        print("Imaged saved...")
+        // Write image to local photo album.
+        UIImageWriteToSavedPhotosAlbum(uiImage, nil, nil, nil)
     }
 }
 
