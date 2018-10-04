@@ -24,13 +24,16 @@ class ViewFinderViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureImageView: UIImageView!
-
+    @IBOutlet weak var selectedFilterView: UIImageView!
+    
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
         captureImageView.layer.borderWidth = 1
         captureImageView.layer.borderColor =  UIColor.black.cgColor
+        selectedFilterView.layer.borderWidth = 1
+        selectedFilterView.layer.borderColor = UIColor.black.cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,6 +140,7 @@ extension ViewFinderViewController: SidePanelViewControllerDelegate {
     // Switch currently used filter to whichever was selected
     func didSelectFilter(_ filter: Filter) {
         
+        selectedFilterView.image = filter.image
         currentFilter = filter.filterName        
         delegate?.toggleFiltersPanel?()
     }
