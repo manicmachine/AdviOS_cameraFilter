@@ -48,8 +48,6 @@ extension SidePanelViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let filter = filters[indexPath.row]
-        bannerImage.image? = filter.image!
-        
         delegate?.didSelectFilter(filter)
     }
     

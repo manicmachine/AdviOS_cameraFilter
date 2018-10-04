@@ -16,7 +16,7 @@ class ContainerViewController: UIViewController {
     var viewFinderNavigationController: UINavigationController!
     var viewFinderViewController: ViewFinderViewController!
     var filtersViewController: SidePanelViewController?
-    var viewFinderExpandedOffset: CGFloat = 60
+    var viewFinderExpandedOffset: CGFloat = 175
     var currentState: SlideOutState = .collapsed {
         didSet {
             let shouldShowShadow = currentState != .collapsed
