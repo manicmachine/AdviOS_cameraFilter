@@ -73,15 +73,15 @@ class ViewFinderViewController: UIViewController {
     }
     
     // MARK: - Functions
-    // Initialize and configure video preview 
+    // Initialize and configure video preview.
     func setupLivePreview() {
         
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        
         videoPreviewLayer.videoGravity = .resizeAspect
         videoPreviewLayer.connection?.videoOrientation = .portrait
         previewView.layer.addSublayer(videoPreviewLayer)
         
+        // Use a dispatch queue to automatically update the preview layer.
         DispatchQueue.global(qos: .userInitiated).async {
             
             self.captureSession.startRunning()
@@ -137,7 +137,8 @@ extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
 
 extension ViewFinderViewController: SidePanelViewControllerDelegate {
     
-    // Switch currently used filter to whichever was selected
+    // Switch currently used filter to whichever was selected and set the
+    // selectedFilterView's image.
     func didSelectFilter(_ filter: Filter) {
         
         selectedFilterView.image = filter.image

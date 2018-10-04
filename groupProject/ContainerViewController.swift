@@ -33,6 +33,7 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add ViewFinderViewController as a subview of ContainerView
         viewFinderViewController = UIStoryboard.viewFinderViewController()
         viewFinderViewController.delegate = self
         viewFinderNavigationController = UINavigationController(rootViewController: viewFinderViewController)
@@ -42,9 +43,11 @@ class ContainerViewController: UIViewController {
         
         viewFinderNavigationController.didMove(toParentViewController: self)
         
+        // Initialize and configure gesture recognizer
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         viewFinderNavigationController.view.addGestureRecognizer(panGestureRecognizer)
         
+        // Request permission to local photo album
         PHPhotoLibrary.requestAuthorization { status in
             guard status == .authorized else { return }}
     }
@@ -56,7 +59,7 @@ extension ContainerViewController: ViewFinderViewControllerDelegate {
     
     func toggleFiltersPanel() {
         
-        let notAlreadyExpanded = ( currentState != .leftPanelExpanded)
+        let notAlreadyExpanded = ( currentState != .leftPanelExpanded )
         
         if notAlreadyExpanded {
             addFiltersPanelViewController()
@@ -77,6 +80,7 @@ extension ContainerViewController: ViewFinderViewControllerDelegate {
         
     }
     
+    // Insert the FilterViewController into the view underneath the others
     func addChildSidePanelController(_ sidePanelController: SidePanelViewController) {
         
         sidePanelController.delegate = viewFinderViewController
@@ -134,8 +138,8 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
     
     @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
         
-        let gestureIsDraggingFromLeftToRight = (recognizer.velocity(in: view).x > 0)
-        
+        // Add the FilterPanelViewController to the view when we beginning
+        // sliding the ViewFinderViewController and enable view shadows.
         switch recognizer.state {
         case .began:
             addFiltersPanelViewController()
