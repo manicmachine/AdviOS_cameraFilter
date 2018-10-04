@@ -14,8 +14,6 @@
 		6FBDCC3721541D4C00C2318E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FBDCC3621541D4C00C2318E /* Assets.xcassets */; };
 		6FBDCC3A21541D4C00C2318E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBDCC3821541D4C00C2318E /* LaunchScreen.storyboard */; };
 		E73B001C215D609400B427CF /* ViewFinderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B001B215D609400B427CF /* ViewFinderViewControllerDelegate.swift */; };
-		E73B001E215D626500B427CF /* Stickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B001D215D626500B427CF /* Stickers.swift */; };
-		E73B0020215D64D700B427CF /* StickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B001F215D64D700B427CF /* StickerCell.swift */; };
 		F5393B862161B88A0003A5DC /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B852161B88A0003A5DC /* Filters.swift */; };
 		F5393B882161BB7F0003A5DC /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B872161BB7F0003A5DC /* ContainerViewController.swift */; };
 		F5393B8A2161BBD80003A5DC /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B892161BBD80003A5DC /* FilterCell.swift */; };
@@ -33,8 +31,6 @@
 		6FBDCC3921541D4C00C2318E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6FBDCC3B21541D4C00C2318E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E73B001B215D609400B427CF /* ViewFinderViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinderViewControllerDelegate.swift; sourceTree = "<group>"; };
-		E73B001D215D626500B427CF /* Stickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stickers.swift; sourceTree = "<group>"; };
-		E73B001F215D64D700B427CF /* StickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCell.swift; sourceTree = "<group>"; };
 		F5393B852161B88A0003A5DC /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		F5393B872161BB7F0003A5DC /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		F5393B892161BBD80003A5DC /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -75,8 +71,6 @@
 				F5393B852161B88A0003A5DC /* Filters.swift */,
 				6FBDCC2C21541D4B00C2318E /* AppDelegate.swift */,
 				6FBDCC2E21541D4B00C2318E /* ViewFinderViewController.swift */,
-				E73B001D215D626500B427CF /* Stickers.swift */,
-				E73B001F215D64D700B427CF /* StickerCell.swift */,
 				E73B001B215D609400B427CF /* ViewFinderViewControllerDelegate.swift */,
 				6FBDCC3021541D4B00C2318E /* Main.storyboard */,
 				6FBDCC3621541D4C00C2318E /* Assets.xcassets */,
@@ -164,10 +158,8 @@
 			files = (
 				F5393B8E2161BE570003A5DC /* SidePanelViewControllerDelegate.swift in Sources */,
 				F5393B862161B88A0003A5DC /* Filters.swift in Sources */,
-				E73B001E215D626500B427CF /* Stickers.swift in Sources */,
 				F5393B8C2161BC9C0003A5DC /* SidePanelViewController.swift in Sources */,
 				F5393B882161BB7F0003A5DC /* ContainerViewController.swift in Sources */,
-				E73B0020215D64D700B427CF /* StickerCell.swift in Sources */,
 				6FBDCC2F21541D4B00C2318E /* ViewFinderViewController.swift in Sources */,
 				6FBDCC2D21541D4B00C2318E /* AppDelegate.swift in Sources */,
 				E73B001C215D609400B427CF /* ViewFinderViewControllerDelegate.swift in Sources */,
