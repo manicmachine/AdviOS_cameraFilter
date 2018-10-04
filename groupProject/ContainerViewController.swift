@@ -11,7 +11,7 @@ import QuartzCore
 import Photos
 
 class ContainerViewController: UIViewController {
-
+    
     // MARK: - Variables
     var viewFinderNavigationController: UINavigationController!
     var viewFinderViewController: ViewFinderViewController!

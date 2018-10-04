@@ -14,6 +14,8 @@ class SidePanelViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerImage: UIImageView!
     
+    
+    
     // MARK: - Variables
     var delegate: SidePanelViewControllerDelegate?
     var filters: Array<Filter>!
@@ -52,3 +54,4 @@ extension SidePanelViewController: UITableViewDelegate {
     }
     
 }
+
