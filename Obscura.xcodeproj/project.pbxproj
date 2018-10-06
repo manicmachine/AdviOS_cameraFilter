@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6FBDCC2921541D4B00C2318E /* groupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = groupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FBDCC2921541D4B00C2318E /* Obscura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Obscura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBDCC2C21541D4B00C2318E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FBDCC2E21541D4B00C2318E /* ViewFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinderViewController.swift; sourceTree = "<group>"; };
 		6FBDCC3121541D4B00C2318E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		6FBDCC2021541D4B00C2318E = {
 			isa = PBXGroup;
 			children = (
-				6FBDCC2B21541D4B00C2318E /* groupProject */,
+				6FBDCC2B21541D4B00C2318E /* Obscura */,
 				6FBDCC2A21541D4B00C2318E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,12 +58,12 @@
 		6FBDCC2A21541D4B00C2318E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FBDCC2921541D4B00C2318E /* groupProject.app */,
+				6FBDCC2921541D4B00C2318E /* Obscura.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6FBDCC2B21541D4B00C2318E /* groupProject */ = {
+		6FBDCC2B21541D4B00C2318E /* Obscura */ = {
 			isa = PBXGroup;
 			children = (
 				F5393B852161B88A0003A5DC /* Filters.swift */,
@@ -79,15 +79,15 @@
 				F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */,
 				F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */,
 			);
-			path = groupProject;
+			path = Obscura;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6FBDCC2821541D4B00C2318E /* groupProject */ = {
+		6FBDCC2821541D4B00C2318E /* Obscura */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6FBDCC3E21541D4C00C2318E /* Build configuration list for PBXNativeTarget "groupProject" */;
+			buildConfigurationList = 6FBDCC3E21541D4C00C2318E /* Build configuration list for PBXNativeTarget "Obscura" */;
 			buildPhases = (
 				6FBDCC2521541D4B00C2318E /* Sources */,
 				6FBDCC2621541D4B00C2318E /* Frameworks */,
@@ -97,9 +97,9 @@
 			);
 			dependencies = (
 			);
-			name = groupProject;
+			name = Obscura;
 			productName = groupProject;
-			productReference = 6FBDCC2921541D4B00C2318E /* groupProject.app */;
+			productReference = 6FBDCC2921541D4B00C2318E /* Obscura.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -117,7 +117,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6FBDCC2421541D4B00C2318E /* Build configuration list for PBXProject "groupProject" */;
+			buildConfigurationList = 6FBDCC2421541D4B00C2318E /* Build configuration list for PBXProject "Obscura" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -130,7 +130,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6FBDCC2821541D4B00C2318E /* groupProject */,
+				6FBDCC2821541D4B00C2318E /* Obscura */,
 			);
 		};
 /* End PBXProject section */
@@ -307,12 +307,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YJD5PF6C3Z;
-				INFOPLIST_FILE = groupProject/Info.plist;
+				INFOPLIST_FILE = Obscura/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cvtc.groupProject;
+				PRODUCT_BUNDLE_IDENTIFIER = cvtc.csather.obscura;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -327,12 +327,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YJD5PF6C3Z;
-				INFOPLIST_FILE = groupProject/Info.plist;
+				INFOPLIST_FILE = Obscura/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cvtc.groupProject;
+				PRODUCT_BUNDLE_IDENTIFIER = cvtc.csather.obscura;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -343,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6FBDCC2421541D4B00C2318E /* Build configuration list for PBXProject "groupProject" */ = {
+		6FBDCC2421541D4B00C2318E /* Build configuration list for PBXProject "Obscura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FBDCC3C21541D4C00C2318E /* Debug */,
@@ -352,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6FBDCC3E21541D4C00C2318E /* Build configuration list for PBXNativeTarget "groupProject" */ = {
+		6FBDCC3E21541D4C00C2318E /* Build configuration list for PBXNativeTarget "Obscura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FBDCC3F21541D4C00C2318E /* Debug */,
