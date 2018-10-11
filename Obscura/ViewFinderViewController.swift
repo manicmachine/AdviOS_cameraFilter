@@ -102,6 +102,10 @@ class ViewFinderViewController: UIViewController {
         
     }
     
+    @IBAction func openImageViewer() {
+        print("Button pressed.")
+    }
+    
 }
 
 // MARK: - Extensions
