@@ -86,7 +86,9 @@ class ViewFinderViewController: UIViewController {
             print("Could not fetch photos. \n\(error), \(error.userInfo)")
         }
         
-        captureImageView.image = UIImage(data: photos[photos.count - 1].value(forKey: "photoData") as! Data)
+        if (photos.count > 0) {
+            captureImageView.image = UIImage(data: photos[photos.count - 1].value(forKey: "photoData") as! Data)
+        }
     }
     
     // Capture session cleanup.
