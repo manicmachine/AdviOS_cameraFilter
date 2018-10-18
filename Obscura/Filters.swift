@@ -37,9 +37,15 @@ struct Filter {
             Filter(title: "Comic", filterName: "CIComicEffect", image: UIImage(named: "comic.png")),
             Filter(title: "Crystallize", filterName: "CICrystallize", image: UIImage(named: "crystallize.png")),
             Filter(title: "Edges", filterName: "CIEdges", image: UIImage(named: "edges.png")),
+            Filter(title: "Edge Work", filterName: "CIEdgeWork", image: UIImage(named: "edgeWork.png")),
             Filter(title: "Pixellate", filterName: "CIPixellate", image: UIImage(named: "pixellate.png")),
             Filter(title: "Line Overlay", filterName: "CILineOverlay", image: UIImage(named: "lineOverlay.png")),
-            Filter(title: "Kaleidoscope", filterName: "CIKaleidoscope", image: UIImage(named: "kaleidoscope.png"))
+            Filter(title: "Kaleidoscope", filterName: "CIKaleidoscope", image: UIImage(named: "kaleidoscope.png")),
+            Filter(title: "Vignette", filterName: "CIVignetteEffect", image: UIImage(named: "vignette.png")),
+            Filter(title: "Twirl", filterName: "CITwirlDistortion", image: UIImage(named: "twirl.png")),
+            Filter(title: "Vortex", filterName: "CIVortexDistortion", image: UIImage(named: "vortex.png")),
+            Filter(title: "Torus", filterName: "CITorusLensDistortion", image: UIImage(named: "torus.png")),
+            Filter(title: "Pointilize", filterName: "CIPointillize", image: UIImage(named: "pointilize.png"))
         ]
     }
 }
