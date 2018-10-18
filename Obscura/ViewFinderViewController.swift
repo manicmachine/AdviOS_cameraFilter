@@ -9,20 +9,23 @@
 import UIKit
 import AVFoundation
 import Photos
-
+import CoreData
 
 class ViewFinderViewController: UIViewController {
     
     // MARK: - Variables
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
+    var previewOutput: AVCaptureVideoDataOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var delegate: ViewFinderViewControllerDelegate?
+    var photos: [NSManagedObject] = []
+    var currentPhotoID: Int16 = 0
     
     var currentFilter: String = "None"
 
     // MARK: - Outlets
-    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var previewView: UIImageView!
     @IBOutlet weak var captureImageView: UIImageView!
     @IBOutlet weak var selectedFilterView: UIImageView!
     
@@ -53,10 +56,13 @@ class ViewFinderViewController: UIViewController {
         do {
             let input = try AVCaptureDeviceInput(device: frontCamera)
             stillImageOutput = AVCapturePhotoOutput()
+            previewOutput = AVCaptureVideoDataOutput()
+            previewOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer"))
             
-            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
+            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) && captureSession.canAddOutput(previewOutput) {
                 captureSession.addInput(input)
                 captureSession.addOutput(stillImageOutput)
+                captureSession.addOutput(previewOutput)
                 setupLivePreview()
             }
             
@@ -66,10 +72,35 @@ class ViewFinderViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FilteredPhoto")
+        
+        do {
+            photos = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch photos. \n\(error), \(error.userInfo)")
+        }
+        
+        captureImageView.image = UIImage(data: photos[photos.count - 1].value(forKey: "photoData") as! Data)
+    }
+    
     // Capture session cleanup.
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.captureSession.stopRunning()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ImageGalleryViewController {
+            let imageGallery = segue.destination as? ImageGalleryViewController
+            imageGallery?.photos = photos
+        }
     }
     
     // MARK: - Functions
@@ -77,21 +108,32 @@ class ViewFinderViewController: UIViewController {
     func setupLivePreview() {
         
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        videoPreviewLayer.videoGravity = .resizeAspect
+        videoPreviewLayer.videoGravity = .resizeAspectFill
         videoPreviewLayer.connection?.videoOrientation = .portrait
-        previewView.layer.addSublayer(videoPreviewLayer)
-        
-        // Use a dispatch queue to automatically update the preview layer.
+
         DispatchQueue.global(qos: .userInitiated).async {
-            
             self.captureSession.startRunning()
-          
-            DispatchQueue.main.async {
-                self.videoPreviewLayer.frame = self.previewView.bounds
-            }
-            
         }
         
+    }
+    
+    func savePhoto(_ image: UIImage) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "FilteredPhoto", in: managedContext)!
+        let photo = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        photo.setValue(currentPhotoID + 1, forKeyPath: "photoID")
+        photo.setValue(UIImageJPEGRepresentation(image, 1.0), forKeyPath: "photoData")
+        
+        do {
+            try managedContext.save()
+            photos.append(photo)
+        } catch let error as NSError {
+            print("Could not save photo. \n\(error), \(error.userInfo)")
+        }
     }
     
     // MARK: - Actions
@@ -100,10 +142,6 @@ class ViewFinderViewController: UIViewController {
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
         
-    }
-    
-    @IBAction func openImageViewer() {
-        print("Button pressed.")
     }
     
 }
@@ -120,22 +158,23 @@ extension ViewFinderViewController : AVCapturePhotoCaptureDelegate {
         }
         
         // Apply filter and output the new image
-        var image = CIImage(data: imageData)
+        var ciImage = CIImage(data: imageData)
         if currentFilter != "None" {
-            image = image?.applyingFilter(currentFilter)
+            ciImage = ciImage?.applyingFilter(currentFilter)
         }
         
         // Convert CIImage back to Data by converting CIImage > CGImage > UIImage
         // to fix photo orientation as photos are taken in landscape by default
         // and CIImage strips orientation data. Converting directly from CIImage
         // to UIImage fails to adjust orientation by itself.
-        let tempImage: CGImage = ViewFinderViewController.imageContext.createCGImage(image!, from: image!.extent)!
+        let tempImage: CGImage = ViewFinderViewController.imageContext.createCGImage(ciImage!, from: ciImage!.extent)!
         let uiImage = UIImage(cgImage: tempImage, scale: 1.0, orientation: .right)
         
         captureImageView.image = uiImage
         
         // Write image to local photo album.
         UIImageWriteToSavedPhotosAlbum(uiImage, nil, nil, nil)
+        savePhoto(uiImage)
     }
 }
 
@@ -148,6 +187,31 @@ extension ViewFinderViewController: SidePanelViewControllerDelegate {
         selectedFilterView.image = filter.image
         currentFilter = filter.filterName        
         delegate?.toggleFiltersPanel?()
+    }
+    
+}
+
+extension ViewFinderViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    func captureOutput(_ output: AVCaptureOutput!, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        
+        var ciImage = CIImage(cvPixelBuffer: imageBuffer)
+        let context = CIContext()
+        
+        if currentFilter != "None" {
+            ciImage = ciImage.applyingFilter(currentFilter)
+        }
+        
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return  }
+        
+        let uiImage = UIImage(cgImage: cgImage, scale: 1.0, orientation: .right)
+        
+        DispatchQueue.main.async {
+            self.previewView.image = uiImage
+        }
+        
     }
     
 }

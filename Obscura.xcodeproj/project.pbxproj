@@ -18,6 +18,9 @@
 		F5393B8A2161BBD80003A5DC /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B892161BBD80003A5DC /* FilterCell.swift */; };
 		F5393B8C2161BC9C0003A5DC /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */; };
 		F5393B8E2161BE570003A5DC /* SidePanelViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */; };
+		F5866404217655F60098A742 /* photos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5866402217655F60098A742 /* photos.xcdatamodeld */; };
+		F5866427217662090098A742 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5866426217662090098A742 /* ImageGalleryViewController.swift */; };
+		F586642F217676460098A742 /* FilteredPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F586642E217676460098A742 /* FilteredPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		F5393B892161BBD80003A5DC /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelViewControllerDelegate.swift; sourceTree = "<group>"; };
+		F5866403217655F60098A742 /* photos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = photos.xcdatamodel; sourceTree = "<group>"; };
+		F5866426217662090098A742 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
+		F586642E217676460098A742 /* FilteredPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,9 @@
 				F5393B892161BBD80003A5DC /* FilterCell.swift */,
 				F5393B8B2161BC9C0003A5DC /* SidePanelViewController.swift */,
 				F5393B8D2161BE570003A5DC /* SidePanelViewControllerDelegate.swift */,
+				F5866402217655F60098A742 /* photos.xcdatamodeld */,
+				F5866426217662090098A742 /* ImageGalleryViewController.swift */,
+				F586642E217676460098A742 /* FilteredPhotoCell.swift */,
 			);
 			path = Obscura;
 			sourceTree = "<group>";
@@ -155,12 +164,15 @@
 			files = (
 				F5393B8E2161BE570003A5DC /* SidePanelViewControllerDelegate.swift in Sources */,
 				F5393B862161B88A0003A5DC /* Filters.swift in Sources */,
+				F5866427217662090098A742 /* ImageGalleryViewController.swift in Sources */,
 				F5393B8C2161BC9C0003A5DC /* SidePanelViewController.swift in Sources */,
 				F5393B882161BB7F0003A5DC /* ContainerViewController.swift in Sources */,
 				6FBDCC2F21541D4B00C2318E /* ViewFinderViewController.swift in Sources */,
 				6FBDCC2D21541D4B00C2318E /* AppDelegate.swift in Sources */,
+				F586642F217676460098A742 /* FilteredPhotoCell.swift in Sources */,
 				E73B001C215D609400B427CF /* ViewFinderViewControllerDelegate.swift in Sources */,
 				F5393B8A2161BBD80003A5DC /* FilterCell.swift in Sources */,
+				F5866404217655F60098A742 /* photos.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +374,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F5866402217655F60098A742 /* photos.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F5866403217655F60098A742 /* photos.xcdatamodel */,
+			);
+			currentVersion = F5866403217655F60098A742 /* photos.xcdatamodel */;
+			path = photos.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6FBDCC2121541D4B00C2318E /* Project object */;
 }

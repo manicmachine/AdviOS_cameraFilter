@@ -13,7 +13,7 @@
         <!--Side Panel View Controller-->
         <scene sceneID="WIv-bc-A9D">
             <objects>
-                <viewController storyboardIdentifier="FiltersViewController" id="QIb-Cb-iyv" customClass="SidePanelViewController" customModule="Obscura" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FiltersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QIb-Cb-iyv" customClass="SidePanelViewController" customModule="Obscura" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mQ6-ht-qK7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,7 @@
         <!--View Finder View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewFinderViewController" id="BYZ-38-t0r" customClass="ViewFinderViewController" customModule="Obscura" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewFinderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewFinderViewController" customModule="Obscura" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,14 +114,14 @@
                                     <action selector="didTakePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gmm-na-8zm"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5c-7j-oTm">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5c-7j-oTm" customClass="UIImageView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="511"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="Og9-rv-ha2"/>
                                     <constraint firstAttribute="height" constant="511" id="mNA-vq-lqe"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-z2-D9i" userLabel="Chosen Filter">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="none" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-z2-D9i" userLabel="Chosen Filter">
                                 <rect key="frame" x="8" y="539" width="119" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Efn-qS-dke"/>
@@ -134,8 +134,7 @@
                                     <constraint firstAttribute="width" constant="104" id="v9q-JU-dLR"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="openImageViewer" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mvx-hv-FeR"/>
-                                    <segue destination="x8G-kZ-b8V" kind="show" id="1yw-H9-ioV"/>
+                                    <segue destination="x8G-kZ-b8V" kind="show" identifier="ImageGallery" id="1yw-H9-ioV"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TN5-4C-wG2">
@@ -175,28 +174,46 @@
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="31.934032983508249"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Image Gallery View Controller-->
         <scene sceneID="bmP-d1-D4i">
             <objects>
-                <collectionViewController id="x8G-kZ-b8V" sceneMemberID="viewController">
+                <collectionViewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="x8G-kZ-b8V" customClass="ImageGalleryViewController" customModule="Obscura" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Yvl-ad-KRs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KNC-U5-EIN">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="127" height="153"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="boO-WD-bfo">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="boO-WD-bfo" customClass="FilteredPhotoCell" customModule="Obscura" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="127" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="127" height="153"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5hh-hG-hZ3">
+                                            <rect key="frame" x="0.0" y="0.0" width="127" height="153"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="127" id="58u-kR-XVK"/>
+                                                <constraint firstAttribute="height" constant="153" id="NXx-hh-Wja"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="5hh-hG-hZ3" secondAttribute="bottom" id="3TI-jc-ivc"/>
+                                    <constraint firstAttribute="trailing" secondItem="5hh-hG-hZ3" secondAttribute="trailing" id="VTg-1D-qSl"/>
+                                    <constraint firstItem="5hh-hG-hZ3" firstAttribute="leading" secondItem="boO-WD-bfo" secondAttribute="leading" id="dnR-p2-0zr"/>
+                                    <constraint firstItem="5hh-hG-hZ3" firstAttribute="top" secondItem="boO-WD-bfo" secondAttribute="top" id="pvu-wr-3dE"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="photo" destination="5hh-hG-hZ3" id="h9h-nU-ZR8"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -207,7 +224,10 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gl0-Fk-a1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839" y="32"/>
+            <point key="canvasLocation" x="837.60000000000002" y="31.934032983508249"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="none" width="756" height="446"/>
+    </resources>
 </document>

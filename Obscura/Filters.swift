@@ -22,6 +22,7 @@ struct Filter {
     
     static func allFilters() -> [Filter] {
         return [
+            Filter(title: "None", filterName: "None", image: UIImage(named: "none.png")),
             Filter(title: "Sepia", filterName: "CISepiaTone", image: UIImage(named: "sepia.png")),
             Filter(title: "Greyscale", filterName: "CIPhotoEffectMono", image: UIImage(named: "mono.png")),
             Filter(title: "Posterize", filterName: "CIColorPosterize", image: UIImage(named: "posterize.png")),
